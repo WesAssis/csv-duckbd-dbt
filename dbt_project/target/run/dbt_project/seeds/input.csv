@@ -1,0 +1,13 @@
+
+    
+    
+    
+    create table "database"."main"."input" ("column1" text,"column2" integer,"column3" text)
+  ;
+    -- dbt seed --
+    
+          COPY "database"."main"."input" FROM 'D:\PROJECTS\DBT + DUCKDB + RAG\dbt_project\seeds\input.csv' (FORMAT CSV, HEADER TRUE, DELIMITER ',')
+        
+
+;
+  

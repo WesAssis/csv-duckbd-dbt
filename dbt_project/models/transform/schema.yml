@@ -1,0 +1,21 @@
+version: 2
+
+models:
+  - name: transform 
+    description: >
+      Este modelo seleciona todos os dados da tabela `input` e adiciona uma coluna estática chamada `teste`
+      com valor fixo `'teste'`. Útil para testes iniciais ou validações simples em ambientes de desenvolvimento.
+    columns:
+      - name: teste
+        description: >
+          Coluna adicionada ao modelo com valor constante `'teste'`. Pode ser usada como marcação ou
+          controle para testes de pipeline.
+
+    meta:
+      owner: "Equipe de Dados"
+      team: "Engenharia de Dados"
+      created_by: "Wesley Assis"
+      tags: ["teste", "exemplo", "dbt"]
+
+    config:
+      materialized: view
