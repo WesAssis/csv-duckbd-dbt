@@ -1,12 +1,27 @@
+# dbt_project.yml
+
 name: 'dbt_project'
 version: '1.0'
 config-version: 2
 
+# Define qual perfil do arquivo profiles.yml será usado
 profile: 'duckdb_profile'
 
+# Define os caminhos onde o dbt buscará cada tipo de arquivo
 model-paths: ["models"]
+analysis-paths: ["analyses"]
+test-paths: ["tests"]
 seed-paths: ["seeds"]
+macro-paths: ["macros"]
 
+# Configurações para os modelos
 models:
+  # Nome do seu projeto. Aplica configurações a todos os modelos.
   dbt_project:
-    +materialized: table
+    # Configurações para a pasta 'silver' (staging)
+    silver:
+      +materialized: view  # Staging é mais eficiente como view
+
+    # Configurações para a pasta 'gold' (marts)
+    gold:
+      +materialized: table # Modelos finais performam melhor como table
