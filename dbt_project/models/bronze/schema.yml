@@ -1,0 +1,24 @@
+version: 2
+
+sources:
+  - name: bronze
+    description: "Camada de dados brutos (bronze) contendo os dados de entrada."
+    schema: bronze # Especifica o schema no DuckDB
+    tables:
+      - name: raw_cars
+        description: "Tabela com os dados brutos de carros carregados a partir do CSV."
+        columns:
+          - name: Manufacturer
+            description: "Fabricante do veículo."
+          - name: Model
+            description: "Modelo do veículo."
+          - name: "Engine size"
+            description: "Tamanho do motor."
+          - name: "Fuel type"
+            description: "Tipo de combustível."
+          - name: "Year of manufacture"
+            description: "Ano de fabricação."
+          - name: Mileage
+            description: "Quilometragem do veículo."
+          - name: Price
+            description: "Preço do veículo."

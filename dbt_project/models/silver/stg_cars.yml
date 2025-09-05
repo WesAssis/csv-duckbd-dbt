@@ -1,0 +1,43 @@
+# models/silver/stg_cars.yml
+
+version: 2
+
+models:
+  - name: stg_cars
+    description: "Modelo de staging para dados de carros. Limpa, padroniza e enriquece os dados brutos da camada bronze. Cada linha representa um carro único à venda."
+    columns:
+      - name: car_id
+        description: "Chave primária única gerada para cada carro."
+        tests:
+          - unique
+          - not_null
+
+      - name: manufacturer
+        description: "Fabricante do veículo."
+        tests:
+          - not_null
+
+      - name: model
+        description: "Modelo do veículo."
+        tests:
+          - not_null
+
+      - name: fuel_type
+        description: "Tipo de combustível do veículo (ex: Petrol, Diesel, Hybrid)."
+        tests:
+          - accepted_values:
+              values: ['Petrol', 'Diesel', 'Hybrid']
+
+      - name: price_eur
+        description: "Preço do veículo em Euros."
+        tests:
+          - dbt_expectations.expect_column_values_to_be_between:
+              min_value: 0
+              row_condition: "price_eur >= 0"
+
+      - name: car_age_years
+        description: "Idade do carro em anos, calculada a partir do ano de fabricação."
+        tests:
+          - dbt_expectations.expect_column_values_to_be_between:
+              min_value: 0
+              max_value: 100

@@ -1,0 +1,32 @@
+# models/gold/gold_models.yml
+
+version: 2
+
+models:
+  - name: avg_price_by_manufacturer_year
+    description: "Tabela agregada que mostra o preço médio dos carros por fabricante e ano de fabricação. Ideal para análises de tendências de preço."
+    columns:
+      - name: manufacturer
+        tests:
+          - not_null
+      - name: year_of_manufacture
+        tests:
+          - not_null
+      - name: average_price_eur
+        description: "Preço médio de venda para o agrupamento."
+        tests:
+          - not_null
+
+  - name: car_mileage_segments
+    description: "Modelo que enriquece os dados dos carros com um segmento de quilometragem (Baixa, Média, Alta). Útil para análises de perfil de uso do veículo."
+    columns:
+      - name: car_id
+        tests:
+          - unique
+          - not_null
+      - name: mileage_segment
+        description: "Segmento de quilometragem do carro."
+        tests:
+          - not_null
+          - accepted_values:
+              values: ['Baixa KM', 'Média KM', 'Alta KM']
